@@ -15,3 +15,13 @@
 .App-intro {
   font-size: large;
 }
+
+.App-left {
+  float: left;
+  border: 2px black solid;
+}
+
+.App-right {
+  float: right;
+  border: 2px black solid;
+}

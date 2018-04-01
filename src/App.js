@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import EpicDisplay from './EpicDisplay';
+import CurveDisplay from './CurveDisplay';
 
 class App extends Component {
   render() {
@@ -8,9 +10,12 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Stefano's Monte Carlo thing</h1>
         </header>
-        <p className="App-intro">
-          Things go here
-        </p>
+        <div className="App-left">
+          <EpicDisplay />
+        </div>
+        <div className="App-right">
+          <CurveDisplay />
+        </div>
       </div>
     );
   }
