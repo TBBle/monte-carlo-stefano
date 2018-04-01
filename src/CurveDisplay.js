@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import CurveGraph from './CurveGraph';
+import CurveList from './CurveList';
 
 class CurveDisplay extends Component {
   render() {
-    return <p>Curve Display</p>;
+    return (
+      <div className="CurveDisplay">
+        <CurveGraph />
+        <CurveList />
+      </div>
+    );
   }
 }
 

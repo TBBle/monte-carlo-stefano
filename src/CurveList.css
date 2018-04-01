@@ -1,0 +1,10 @@
+.CurveList {
+  border: 1px black solid;
+}
+
+.CurveList tr th {
+  border: 1px black solid;
+}
+.CurveList tr td {
+  border: 1px black dotted;
+}
