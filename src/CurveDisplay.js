@@ -4,10 +4,12 @@ import CurveList from './CurveList';
 
 class CurveDisplay extends Component {
   render() {
+    const selected = 0;
+
     return (
       <div className="CurveDisplay">
-        <CurveGraph />
-        <CurveList />
+        <CurveGraph curves={this.props.curves} selected={selected} />
+        <CurveList curves={this.props.curves} selected={selected} />
       </div>
     );
   }
