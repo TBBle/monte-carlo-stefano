@@ -4,6 +4,8 @@ Stefano Martincigh needed something to evaluate/demonstrate how Monte Carlo simu
 
 [Paul "TBBle" Hampson](http://www.tbble.org/) found that Microsoft Excel just wasn't going to be up to the task, and wanted to learn modern Javascript development.
 
+The deployed version will appear at http://www.tbble.org/monte-carlo-stefano/
+
 ## Frameworks/modules used
 
 ### [ReactJS](https://reactjs.org)
