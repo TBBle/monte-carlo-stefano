@@ -3,7 +3,8 @@ import './EpicGraph.css';
 
 class EpicGraph extends Component {
   render() {
-    return <p className="EpicGraph">Epic Graph</p>;
+    const epic = this.props.epics[this.props.selected];
+    return <p className="EpicGraph">Rendering Epic {epic.id}</p>;
   }
 }
 

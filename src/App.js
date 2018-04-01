@@ -14,13 +14,19 @@ class App extends Component {
       { size: 'L', distribution: 'Gaussian', parameters: { mean: 3, sd: 1 } },
     ];
 
+    const EPICS = [
+      { id: 1, curves: [2, 0] },
+      { id: 2, curves: [0, 2] },
+      { id: 3, curves: [1, 1] },
+    ];
+
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Stefano's Monte Carlo thing</h1>
         </header>
         <div className="App-left">
-          <EpicDisplay curves={CURVES} />
+          <EpicDisplay curves={CURVES} epics={EPICS} />
         </div>
         <div className="App-right">
           <CurveDisplay curves={CURVES} />

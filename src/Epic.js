@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import './Epic.css';
 
 class Epic extends Component {
+  renderResult = () => {
+    return <td>Result here</td>;
+  };
+
   render() {
+    const curveCounts = [];
+    const epic = this.props.epic;
+    epic.curves.forEach(count => {
+      curveCounts.push(<td>{count}</td>);
+    });
     return (
-      <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>5 days</td>
+      <tr className={this.props.selected ? 'Epic Epic-Selected' : 'Epic'}>
+        <td>{epic.id}</td>
+        {curveCounts}
+        {this.renderResult()}
       </tr>
     );
   }
