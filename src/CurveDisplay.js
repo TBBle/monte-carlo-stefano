@@ -8,8 +8,16 @@ class CurveDisplay extends Component {
 
     return (
       <div className="CurveDisplay">
-        <CurveGraph curves={this.props.curves} selected={selected} />
-        <CurveList curves={this.props.curves} selected={selected} />
+        <CurveGraph
+          curves={this.props.curves}
+          results={this.props.results.curves}
+          selected={selected}
+        />
+        <CurveList
+          curves={this.props.curves}
+          results={this.props.results.curves}
+          selected={selected}
+        />
       </div>
     );
   }

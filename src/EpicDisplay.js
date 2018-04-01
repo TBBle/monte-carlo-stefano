@@ -10,11 +10,13 @@ class EpicDisplay extends Component {
         <EpicGraph
           curves={this.props.curves}
           epics={this.props.epics}
+          results={this.props.results.epics}
           selected={selected}
         />
         <EpicList
           curves={this.props.curves}
           epics={this.props.epics}
+          results={this.props.results.epics}
           selected={selected}
         />
       </div>
