@@ -2,7 +2,7 @@ import React from 'react';
 import Curve from '../Curve';
 
 class PERT extends Curve {
-  renderParams = () => {
+  renderParams() {
     const parameters = this.props.curve.parameters;
     return (
       <td>
@@ -10,11 +10,11 @@ class PERT extends Curve {
         {parameters.mode}
       </td>
     );
-  };
+  }
 
-  renderResult = () => {
+  renderResult() {
     return <td>Result here</td>;
-  };
+  }
 }
 
 export default PERT;
