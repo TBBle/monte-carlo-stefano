@@ -1,36 +1,25 @@
 import React, { Component } from 'react';
 import './CurveList.css';
-import PERT from './curves/PERT';
-import Gaussian from './curves/Gaussian';
+import CurveRegistry from './CurveRegistry';
 
 class CurveList extends Component {
   render() {
     const curves = [];
     this.props.curves.forEach((curve, index) => {
-      // TODO: Establish a curves registry to remove hard-coded names
-      switch (curve.distribution) {
-        case 'PERT':
-          curves.push(
-            <PERT
-              curve={curve}
-              selected={index === this.props.selected ? true : false}
-            />
-          );
-          break;
-        case 'Gaussian':
-          curves.push(
-            <Gaussian
-              curve={curve}
-              selected={index === this.props.selected ? true : false}
-            />
-          );
-          break;
-        default:
-          curves.push(
-            <tr className="error">
-              <td colspan="4">Unknown curve '{curve.distribution}'</td>
-            </tr>
-          );
+      if (curve.distribution in CurveRegistry) {
+        const CurveComponent = CurveRegistry[curve.distribution];
+        curves.push(
+          <CurveComponent
+            curve={curve}
+            selected={index === this.props.selected ? true : false}
+          />
+        );
+      } else {
+        curves.push(
+          <tr className="error">
+            <td colspan="4">Unknown curve '{curve.distribution}'</td>
+          </tr>
+        );
       }
     });
 
