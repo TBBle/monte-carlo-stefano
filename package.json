@@ -8,12 +8,16 @@
     "react-scripts": "1.1.1"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "prettier": "^1.11.1"
-  }
+  },
+  "homepage": "http://www.tbble.org/monte-carlo-stefano/"
 }
