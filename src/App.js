@@ -10,7 +10,7 @@ class App extends Component {
       {
         size: 'L',
         distribution: 'PERT',
-        parameters: { minimum: 1, maximum: 5, mode: 2 },
+        parameters: { minimum: 1, maximum: 9, mode: 2 },
       },
       { size: 'L', distribution: 'Gaussian', parameters: { mean: 3, sd: 1 } },
     ];
