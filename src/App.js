@@ -63,7 +63,7 @@ class App extends Component {
 
   generateResults(curves, epics) {
     // Lots of numbers: A batch for each curve, and then a batch for each epic.
-    const ITERATIONS = 100; // TODO: 10k
+    const ITERATIONS = 2000;
 
     const curveResults = [];
     curves.forEach(curve => {
