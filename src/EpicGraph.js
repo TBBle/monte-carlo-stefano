@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import './EpicGraph.css';
 
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round#A_better_solution
+function round(number, precision) {
+  var shift = function(number, precision, reverseShift) {
+    if (reverseShift) {
+      precision = -precision;
+    }
+    const numArray = ('' + number).split('e');
+    return +(
+      numArray[0] +
+      'e' +
+      (numArray[1] ? +numArray[1] + precision : precision)
+    );
+  };
+  return shift(Math.round(shift(number, precision, false)), precision, true);
+}
+
 class EpicGraph extends Component {
   render() {
     const epic = this.props.epics[this.props.selected];
@@ -22,7 +38,7 @@ class EpicGraph extends Component {
   getOption() {
     const results = this.props.results[this.props.selected];
 
-    const roundedValues = results.map(x => Math.round(x * 2) / 2);
+    const roundedValues = results.map(x => round(x, 1));
     const counts = this.countHits(roundedValues);
 
     // echarts datasets row-based key-value format
