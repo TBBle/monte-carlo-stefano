@@ -22,8 +22,8 @@ class EpicGraph extends Component {
   getOption() {
     const results = this.props.results[this.props.selected];
 
-    const nearestInteger = results.map(x => Math.round(x));
-    const counts = this.countHits(nearestInteger);
+    const roundedValues = results.map(x => Math.round(x * 2) / 2);
+    const counts = this.countHits(roundedValues);
 
     // echarts datasets row-based key-value format
     // https://ecomfe.github.io/echarts-doc/public/en/option.html#dataset.source
