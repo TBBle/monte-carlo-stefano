@@ -8,40 +8,62 @@ class App extends Component {
   render() {
     const CURVES = [
       {
-        size: 'xs',
+        size: 'XS',
         distribution: 'PERT',
         parameters: { minimum: 4, mode: 5, maximum: 10, height: 24 },
       },
       {
-        size: 's',
+        size: 'S',
         distribution: 'PERT',
         parameters: { minimum: 7, mode: 9, maximum: 25, height: 15 },
       },
       {
-        size: 'm',
+        size: 'M',
         distribution: 'PERT',
         parameters: { minimum: 15, mode: 16, maximum: 40, height: 8 },
       },
       {
-        size: 'l',
+        size: 'L',
         distribution: 'PERT',
         parameters: { minimum: 25, mode: 30, maximum: 60, height: 4 },
       },
       {
-        size: 'xl',
+        size: 'XL',
         distribution: 'PERT',
         parameters: { minimum: 50, mode: 50, maximum: 100, height: 1 },
       },
-      //{ size: 'L', distribution: 'Gaussian', parameters: { mean: 3, sd: 1 } },
+      {
+        size: 'XS',
+        distribution: 'Gaussian',
+        parameters: { mean: 5, sd: 0.5 },
+      },
+      { size: 'S', distribution: 'Gaussian', parameters: { mean: 9, sd: 0.9 } },
+      {
+        size: 'M',
+        distribution: 'Gaussian',
+        parameters: { mean: 16, sd: 1.6 },
+      },
+      { size: 'L', distribution: 'Gaussian', parameters: { mean: 30, sd: 3 } },
+      {
+        size: 'XL',
+        distribution: 'Gaussian',
+        parameters: { mean: 52, sd: 5.2 },
+      },
     ];
 
     const EPICS = [
-      { id: 1, curves: [1, 0, 0, 0, 0] },
-      { id: 2, curves: [0, 1, 0, 0, 0] },
-      { id: 3, curves: [0, 0, 1, 0, 0] },
-      { id: 4, curves: [0, 0, 0, 1, 0] },
-      { id: 5, curves: [0, 0, 0, 0, 1] },
-      { id: 6, curves: [1, 1, 1, 1, 1] },
+      { id: 1, curves: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { id: 2, curves: [0, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { id: 3, curves: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0] },
+      { id: 4, curves: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0] },
+      { id: 5, curves: [0, 0, 0, 0, 1, 0, 0, 0, 0, 0] },
+      { id: 6, curves: [1, 1, 1, 1, 1, 0, 0, 0, 0, 0] },
+      { id: 7, curves: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0] },
+      { id: 8, curves: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0] },
+      { id: 9, curves: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0] },
+      { id: 10, curves: [0, 0, 0, 0, 0, 0, 0, 0, 1, 0] },
+      { id: 11, curves: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1] },
+      { id: 12, curves: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1] },
     ];
 
     const RESULTS = this.generateResults(CURVES, EPICS);
