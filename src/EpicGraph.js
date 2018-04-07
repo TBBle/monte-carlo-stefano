@@ -29,7 +29,10 @@ class EpicGraph extends Component {
     return (
       <div className="EpicGraph">
         <p>Rendering Epic {epic.id}</p>
-        <ReactEcharts option={this.getOption()} />
+        {/* Hide ReactEcharts from Jest, see https://github.com/apache/incubator-echarts/issues/6575 */
+        typeof jest === 'undefined' ? (
+          <ReactEcharts option={this.getOption()} />
+        ) : null}
         <ul style={{ display: 'none' }}>{resultList}</ul>
       </div>
     );
