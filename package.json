@@ -9,19 +9,27 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.4"
+    "react-scripts": "2.0.0-next.b2fd8db8"
   },
   "scripts": {
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --no-color",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "gh-pages": "^1.1.0",
     "prettier": "^1.11.1"
   },
-  "homepage": "http://www.tbble.org/monte-carlo-stefano/"
+  "homepage": "http://www.tbble.org/monte-carlo-stefano/",
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [">1%", "last 4 versions", "Firefox ESR", "not ie < 11"]
+  }
 }
