@@ -9,8 +9,8 @@ class Epic extends Component {
   render() {
     const curveCounts = [];
     const epic = this.props.epic;
-    epic.curves.forEach(count => {
-      curveCounts.push(<td>{count}</td>);
+    epic.curves.forEach((count, index) => {
+      curveCounts.push(<td key={index}>{count}</td>);
     });
     return (
       <tr className={this.props.selected ? 'Epic Epic-Selected' : 'Epic'}>

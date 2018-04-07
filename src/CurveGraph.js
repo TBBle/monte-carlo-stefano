@@ -23,8 +23,8 @@ class CurveGraph extends Component {
     const curve = this.props.curves[this.props.selected];
     const results = this.props.results[this.props.selected];
     const resultList = [];
-    results.forEach(result => {
-      resultList.push(<li>{result}</li>);
+    results.forEach((result, index) => {
+      resultList.push(<li key={index}>{result}</li>);
     });
     return (
       <div className="CurveGraph">

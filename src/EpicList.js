@@ -5,9 +5,9 @@ import Epic from './Epic';
 class EpicList extends Component {
   render() {
     const curveHeaders = [];
-    this.props.curves.forEach(curve => {
+    this.props.curves.forEach((curve, index) => {
       curveHeaders.push(
-        <th>
+        <th key={index}>
           {curve.size} {curve.distribution}
         </th>
       );
@@ -16,6 +16,7 @@ class EpicList extends Component {
     this.props.epics.forEach((epic, index) => {
       epics.push(
         <Epic
+          key={epic.id}
           epic={epic}
           curves={this.props.curves}
           selected={index === this.props.selected}

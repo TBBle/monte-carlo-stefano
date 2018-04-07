@@ -10,6 +10,7 @@ class CurveList extends Component {
         const CurveComponent = CurveRegistry[curve.distribution];
         curves.push(
           <CurveComponent
+            key={index}
             curve={curve}
             selected={index === this.props.selected ? true : false}
           />
