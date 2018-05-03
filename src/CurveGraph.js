@@ -32,10 +32,7 @@ class CurveGraph extends Component {
           Rendering Curve {this.props.selected}: {curve.size}{' '}
           {curve.distribution}
         </p>
-        {/* Hide ReactEcharts from Jest, see https://github.com/apache/incubator-echarts/issues/6575 */
-        typeof jest === 'undefined' ? (
-          <ReactEcharts option={this.getOption()} />
-        ) : null}
+        <ReactEcharts option={this.getOption()} />
         <ul style={{ display: 'none' }}>{resultList}</ul>
       </div>
     );
