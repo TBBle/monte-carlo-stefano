@@ -20,8 +20,8 @@ function round(number, precision) {
 
 class CurveGraph extends Component {
   render() {
-    const curve = this.props.curves[this.props.selected];
-    const results = this.props.results[this.props.selected];
+    const curve = this.props.curve;
+    const results = this.props.results;
     const resultList = [];
     results.forEach((result, index) => {
       resultList.push(<li key={index}>{result}</li>);
@@ -29,7 +29,7 @@ class CurveGraph extends Component {
     return (
       <div className="CurveGraph">
         <p>
-          Rendering Curve {this.props.selected}: {curve.size}{' '}
+          Rendering Curve: {curve.size}{' '}
           {curve.distribution}
         </p>
         <ReactEcharts option={this.getOption()} />
@@ -39,7 +39,7 @@ class CurveGraph extends Component {
   }
 
   getOption() {
-    const results = this.props.results[this.props.selected];
+    const results = this.props.results;
 
     const roundedValues = results.map(x => round(x, 1));
     const counts = this.countHits(roundedValues);

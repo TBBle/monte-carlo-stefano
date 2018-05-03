@@ -8,10 +8,8 @@ class EpicDisplay extends Component {
     return (
       <div className="EpicDisplay">
         <EpicGraph
-          curves={this.props.curves}
-          epics={this.props.epics}
-          results={this.props.results.epics}
-          selected={selected}
+          epic={this.props.epics[selected]}
+          results={this.props.results.epics[selected]}
         />
         <EpicList
           curves={this.props.curves}

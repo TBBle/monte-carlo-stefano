@@ -20,8 +20,8 @@ function round(number, precision) {
 
 class EpicGraph extends Component {
   render() {
-    const epic = this.props.epics[this.props.selected];
-    const results = this.props.results[this.props.selected];
+    const epic = this.props.epic;
+    const results = this.props.results;
     const resultList = [];
     results.forEach((result, index) => {
       resultList.push(<li key={index}>{result}</li>);
@@ -36,7 +36,7 @@ class EpicGraph extends Component {
   }
 
   getOption() {
-    const results = this.props.results[this.props.selected];
+    const results = this.props.results;
 
     const roundedValues = results.map(x => round(x, 1));
     const counts = this.countHits(roundedValues);

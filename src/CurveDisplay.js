@@ -9,9 +9,8 @@ class CurveDisplay extends Component {
     return (
       <div className="CurveDisplay">
         <CurveGraph
-          curves={this.props.curves}
-          results={this.props.results.curves}
-          selected={selected}
+          curve={this.props.curves[selected]}
+          results={this.props.results.curves[selected]}
         />
         <CurveList
           curves={this.props.curves}
