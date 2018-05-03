@@ -17,8 +17,8 @@ class CurveList extends Component {
         );
       } else {
         curves.push(
-          <tr className="error">
-            <td colspan="4">Unknown curve '{curve.distribution}'</td>
+          <tr key={index} className="error">
+            <td colSpan="4">Unknown curve '{curve.distribution}'</td>
           </tr>
         );
       }
