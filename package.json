@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
     "echarts": "^4.0.4",
     "echarts-for-react": "^2.0.8",
     "probability-distributions": "^0.9.1",
@@ -30,6 +31,11 @@
       "last 2 firefox versions",
       "last 2 edge versions"
     ],
-    "production": [">1%", "last 4 versions", "Firefox ESR", "not ie < 11"]
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
   }
 }
