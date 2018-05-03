@@ -6,11 +6,7 @@ class EpicList extends Component {
   render() {
     const curveHeaders = [];
     this.props.curves.forEach((curve, index) => {
-      curveHeaders.push(
-        <th key={index}>
-          {curve.size} {curve.distribution}
-        </th>
-      );
+      curveHeaders.push(<th key={index}>{curve.size}</th>);
     });
     const epics = [];
     this.props.epics.forEach((epic, index) => {

@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
 import './CurveList.css';
-import CurveRegistry from './CurveRegistry';
+import Curve from './Curve';
 
 class CurveList extends Component {
   render() {
     const curves = [];
     this.props.curves.forEach((curve, index) => {
-      if (curve.distribution in CurveRegistry) {
-        const CurveComponent = CurveRegistry[curve.distribution];
-        curves.push(
-          <CurveComponent
-            key={index}
-            curve={curve}
-            selected={index === this.props.selected ? true : false}
-          />
-        );
-      } else {
-        curves.push(
-          <tr key={index} className="error">
-            <td colSpan="4">Unknown curve '{curve.distribution}'</td>
-          </tr>
-        );
-      }
+      curves.push(
+        <Curve
+          key={index}
+          curve={curve}
+          selected={index === this.props.selected ? true : false}
+        />
+      );
     });
 
     return (
@@ -31,8 +22,8 @@ class CurveList extends Component {
           <thead>
             <tr>
               <th>Size</th>
-              <th>Curve</th>
-              <th>Parameters</th>
+              <th>PERT</th>
+              <th>Gaussian</th>
               <th>Result</th>
             </tr>
           </thead>

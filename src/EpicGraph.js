@@ -20,7 +20,6 @@ function round(number, precision) {
 
 class EpicGraph extends Component {
   render() {
-    const epic = this.props.epic;
     const results = this.props.results;
     const resultList = [];
     results.forEach((result, index) => {
@@ -28,7 +27,7 @@ class EpicGraph extends Component {
     });
     return (
       <div className="EpicGraph">
-        <p>Rendering Epic {epic.id}</p>
+        <p>Rendering Epic {this.props.label}</p>
         <ReactEcharts option={this.getOption()} />
         <ul style={{ display: 'none' }}>{resultList}</ul>
       </div>

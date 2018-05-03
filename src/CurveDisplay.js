@@ -5,18 +5,27 @@ import CurveList from './CurveList';
 class CurveDisplay extends Component {
   render() {
     const selected = 0;
+    const curves = this.props.curves;
+    const results = this.props.results;
+    const selectedCurves = curves[selected];
+    const selectedResults = results[selected];
+
+    const curveGraphs = [];
+    for (const distributionName in selectedResults) {
+      const label = selectedCurves.size + ' (' + distributionName + ')';
+      curveGraphs.push(
+        <CurveGraph
+          key={distributionName}
+          label={label}
+          results={selectedResults[distributionName]}
+        />
+      );
+    }
 
     return (
       <div className="CurveDisplay">
-        <CurveGraph
-          curve={this.props.curves[selected]}
-          results={this.props.results.curves[selected]}
-        />
-        <CurveList
-          curves={this.props.curves}
-          results={this.props.results.curves}
-          selected={selected}
-        />
+        {curveGraphs}
+        <CurveList curves={curves} selected={selected} />
       </div>
     );
   }
