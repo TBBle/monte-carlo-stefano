@@ -1,7 +1,9 @@
 {
   "jshint.enable": false,
   "tslint.enable": false,
+  "javascript.format.enable": false,
   "javascript.validate.enable": false,
+  "typescript.format.enable": false,
   "typescript.validate.enable": false,
   "standard.enable": false,
   "eslint.enable": true,
