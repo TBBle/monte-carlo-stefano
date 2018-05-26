@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import EpicDisplay from './EpicDisplay';
 import CurveDisplay from './CurveDisplay';
-import DistributionRegistry from './DistributionRegistry';
+import { generateResults } from './data';
 
 class App extends Component {
   render() {
@@ -53,7 +53,7 @@ class App extends Component {
       { id: 6, curves: [1, 1, 1, 1, 1] },
     ];
 
-    const RESULTS = this.generateResults(CURVES, EPICS);
+    const RESULTS = generateResults(CURVES, EPICS);
 
     return (
       <div className="App">
@@ -68,69 +68,6 @@ class App extends Component {
         </div>
       </div>
     );
-  }
-
-  distributions(curve) {
-    const result = {};
-    const parametersObject = curve['parameters'];
-    for (const distributionName in parametersObject) {
-      const parameters = parametersObject[distributionName];
-      result[distributionName] = new DistributionRegistry[distributionName](
-        parameters
-      );
-    }
-    return result;
-  }
-
-  generateResults(curves, epics) {
-    // Lots of numbers: A batch for each curve, and then a batch for each epic.
-    const ITERATIONS = 2000;
-
-    const curveResults = [];
-    for (const curve of curves) {
-      const curveResult = {};
-      const curveDistributions = this.distributions(curve);
-      for (const distributionName in curveDistributions) {
-        const distribution = curveDistributions[distributionName];
-        curveResult[distributionName] = Array.from({ length: ITERATIONS }, () =>
-          distribution.sample()
-        );
-      }
-      curveResults.push(curveResult);
-    }
-
-    const epicResults = [];
-    for (const epic of epics) {
-      const epicDistributions = {};
-      for (const [curveIndex, count] of epic['curves'].entries()) {
-        const curve = curves[curveIndex];
-        const curveDistributions = this.distributions(curve);
-        for (const distributionName in curveDistributions) {
-          const distribution = curveDistributions[distributionName];
-          if (!(distributionName in epicDistributions)) {
-            epicDistributions[distributionName] = [];
-          }
-          for (var i = 0; i < count; i++) {
-            epicDistributions[distributionName].push(distribution);
-          }
-        }
-      }
-      const epicResult = {};
-      for (const distributionName in epicDistributions) {
-        const distributions = epicDistributions[distributionName];
-        epicResult[distributionName] = Array.from(
-          { length: ITERATIONS },
-          () => {
-            return distributions.reduce((accumulator, distribution) => {
-              return accumulator + distribution.sample();
-            }, 0);
-          }
-        );
-      }
-      epicResults.push(epicResult);
-    }
-
-    return { curves: curveResults, epics: epicResults };
   }
 }
 
