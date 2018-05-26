@@ -6,6 +6,7 @@
     "canvas-prebuilt": "^1.6.5-prerelease.1",
     "echarts": "^4.0.4",
     "echarts-for-react": "^2.0.8",
+    "eslint-plugin-prettier": "^2.6.0",
     "gh-pages": "^1.1.0",
     "prettier": "^1.12.1",
     "probability-distributions": "^0.9.1",
