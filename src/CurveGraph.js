@@ -27,7 +27,7 @@ class CurveGraph extends Component {
     });
     return (
       <div className="CurveGraph">
-        <p>Rendering Curve: {this.props.label}</p>
+        <p>Rendering {this.props.label}</p>
         <ReactEcharts option={this.getOption()} />
         <ul style={{ display: 'none' }}>{resultList}</ul>
       </div>

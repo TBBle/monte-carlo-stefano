@@ -12,7 +12,8 @@ class CurveDisplay extends Component {
 
     const curveGraphs = [];
     for (const distributionName in selectedResults) {
-      const label = selectedCurves.size + ' (' + distributionName + ')';
+      const label =
+        'Curve: ' + selectedCurves.size + ' (' + distributionName + ')';
       curveGraphs.push(
         <CurveGraph
           key={distributionName}

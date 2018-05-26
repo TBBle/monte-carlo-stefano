@@ -13,7 +13,7 @@ class EpicDisplay extends Component {
 
     const epicGraphs = [];
     for (const distributionName in selectedResults) {
-      const label = selectedEpics.id + ' (' + distributionName + ')';
+      const label = 'Epic ' + selectedEpics.id + ' (' + distributionName + ')';
       epicGraphs.push(
         <EpicGraph
           key={distributionName}

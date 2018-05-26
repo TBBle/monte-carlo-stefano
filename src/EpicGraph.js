@@ -27,7 +27,7 @@ class EpicGraph extends Component {
     });
     return (
       <div className="EpicGraph">
-        <p>Rendering Epic {this.props.label}</p>
+        <p>Rendering {this.props.label}</p>
         <ReactEcharts option={this.getOption()} />
         <ul style={{ display: 'none' }}>{resultList}</ul>
       </div>
