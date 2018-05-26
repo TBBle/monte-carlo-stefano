@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CurveGraph from './CurveGraph';
+import Graph from './Graph';
 import CurveList from './CurveList';
 
 class CurveDisplay extends Component {
@@ -15,7 +15,7 @@ class CurveDisplay extends Component {
       const label =
         'Curve: ' + selectedCurves.size + ' (' + distributionName + ')';
       curveGraphs.push(
-        <CurveGraph
+        <Graph
           key={distributionName}
           label={label}
           results={selectedResults[distributionName]}

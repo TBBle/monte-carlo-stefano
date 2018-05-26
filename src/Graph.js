@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
-import './EpicGraph.css';
+import './Graph.css';
 
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round#A_better_solution
 function round(number, precision) {
@@ -18,7 +18,7 @@ function round(number, precision) {
   return shift(Math.round(shift(number, precision, false)), precision, true);
 }
 
-class EpicGraph extends Component {
+class Graph extends Component {
   render() {
     const results = this.props.results;
     const resultList = [];
@@ -26,7 +26,7 @@ class EpicGraph extends Component {
       resultList.push(<li key={index}>{result}</li>);
     });
     return (
-      <div className="EpicGraph">
+      <div className="Graph">
         <p>Rendering {this.props.label}</p>
         <ReactEcharts option={this.getOption()} />
         <ul style={{ display: 'none' }}>{resultList}</ul>
@@ -71,4 +71,4 @@ class EpicGraph extends Component {
   }
 }
 
-export default EpicGraph;
+export default Graph;

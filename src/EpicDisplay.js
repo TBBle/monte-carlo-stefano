@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EpicGraph from './EpicGraph';
+import Graph from './Graph';
 import EpicList from './EpicList';
 
 class EpicDisplay extends Component {
@@ -15,7 +15,7 @@ class EpicDisplay extends Component {
     for (const distributionName in selectedResults) {
       const label = 'Epic ' + selectedEpics.id + ' (' + distributionName + ')';
       epicGraphs.push(
-        <EpicGraph
+        <Graph
           key={distributionName}
           label={label}
           results={selectedResults[distributionName]}
