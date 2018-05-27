@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import EpicDisplay from './EpicDisplay';
-import CurveDisplay from './CurveDisplay';
+import FeatureDisplay from './FeatureDisplay';
 import { generateResults } from './data';
 
 class App extends Component {
   render() {
-    const CURVES = [
+    const FEATURES = [
       {
         size: 'XS',
         parameters: {
@@ -45,15 +45,15 @@ class App extends Component {
     ];
 
     const EPICS = [
-      { id: 1, curves: [1, 0, 0, 0, 0] },
-      { id: 2, curves: [0, 1, 0, 0, 0] },
-      { id: 3, curves: [0, 0, 1, 0, 0] },
-      { id: 4, curves: [0, 0, 0, 1, 0] },
-      { id: 5, curves: [0, 0, 0, 0, 1] },
-      { id: 6, curves: [1, 1, 1, 1, 1] },
+      { id: 1, features: [1, 0, 0, 0, 0] },
+      { id: 2, features: [0, 1, 0, 0, 0] },
+      { id: 3, features: [0, 0, 1, 0, 0] },
+      { id: 4, features: [0, 0, 0, 1, 0] },
+      { id: 5, features: [0, 0, 0, 0, 1] },
+      { id: 6, features: [1, 1, 1, 1, 1] },
     ];
 
-    const RESULTS = generateResults(CURVES, EPICS);
+    const RESULTS = generateResults(FEATURES, EPICS);
 
     return (
       <div className="App">
@@ -61,10 +61,14 @@ class App extends Component {
           <h1 className="App-title">Stefano's Monte Carlo thing</h1>
         </header>
         <div className="App-left">
-          <EpicDisplay curves={CURVES} epics={EPICS} results={RESULTS.epics} />
+          <EpicDisplay
+            features={FEATURES}
+            epics={EPICS}
+            results={RESULTS.epics}
+          />
         </div>
         <div className="App-right">
-          <CurveDisplay curves={CURVES} results={RESULTS.curves} />
+          <FeatureDisplay features={FEATURES} results={RESULTS.features} />
         </div>
       </div>
     );

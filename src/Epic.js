@@ -23,15 +23,15 @@ class Epic extends Component {
   }
 
   render() {
-    const curveCounts = [];
+    const featureCounts = [];
     const epic = this.props.epic;
-    epic.curves.forEach((count, index) => {
-      curveCounts.push(<td key={index}>{count}</td>);
+    epic.features.forEach((count, index) => {
+      featureCounts.push(<td key={index}>{count}</td>);
     });
     return (
       <tr className={this.props.selected ? 'Epic Epic-Selected' : 'Epic'}>
         <td>{epic.id}</td>
-        {curveCounts}
+        {featureCounts}
         {this.renderPERTPercentiles()}
         {this.renderGaussianPercentiles()}
       </tr>

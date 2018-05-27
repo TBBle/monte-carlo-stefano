@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './CurveList.css';
-import Curve from './Curve';
+import './FeatureList.css';
+import Feature from './Feature';
 
-class CurveList extends Component {
+class FeatureList extends Component {
   render() {
-    const curves = [];
-    this.props.curves.forEach((curve, index) => {
-      curves.push(
-        <Curve
+    const features = [];
+    this.props.features.forEach((feature, index) => {
+      features.push(
+        <Feature
           key={index}
-          curve={curve}
+          feature={feature}
           results={this.props.results[index]}
           selected={index === this.props.selected ? true : false}
         />
@@ -17,8 +17,8 @@ class CurveList extends Component {
     });
 
     return (
-      <div className="CurveList">
-        <h2>Curves</h2>
+      <div className="FeatureList">
+        <h2>Features</h2>
         <table>
           <thead>
             <tr>
@@ -49,11 +49,11 @@ class CurveList extends Component {
               <th>97th</th>
             </tr>
           </thead>
-          <tbody>{curves}</tbody>
+          <tbody>{features}</tbody>
         </table>
       </div>
     );
   }
 }
 
-export default CurveList;
+export default FeatureList;

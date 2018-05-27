@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
-import EpicList from './EpicList';
+import FeatureList from './FeatureList';
 
-class EpicDisplay extends Component {
+class FeatureDisplay extends Component {
   render() {
     const selected = 0;
     const features = this.props.features;
-    const epics = this.props.epics;
     const results = this.props.results;
-    const selectedEpics = epics[selected];
+    const selectedFeatures = features[selected];
     const selectedResults = results[selected];
 
-    const epicGraphs = [];
+    const featureGraphs = [];
     for (const distributionName in selectedResults) {
-      const label = 'Epic ' + selectedEpics.id + ' (' + distributionName + ')';
-      epicGraphs.push(
+      const label =
+        'Feature: ' + selectedFeatures.size + ' (' + distributionName + ')';
+      featureGraphs.push(
         <Graph
           key={distributionName}
           label={label}
@@ -24,11 +24,10 @@ class EpicDisplay extends Component {
     }
 
     return (
-      <div className="EpicDisplay">
-        {epicGraphs}
-        <EpicList
+      <div className="FeatureDisplay">
+        {featureGraphs}
+        <FeatureList
           features={features}
-          epics={epics}
           results={results}
           selected={selected}
         />
@@ -37,4 +36,4 @@ class EpicDisplay extends Component {
   }
 }
 
-export default EpicDisplay;
+export default FeatureDisplay;

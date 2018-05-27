@@ -2,9 +2,9 @@ import DistributionRegistry from './DistributionRegistry';
 
 const ITERATIONS = 2000;
 
-function distributions(curve) {
+function distributions(feature) {
   const result = {};
-  const parametersObject = curve['parameters'];
+  const parametersObject = feature['parameters'];
   for (const distributionName in parametersObject) {
     const parameters = parametersObject[distributionName];
     result[distributionName] = new DistributionRegistry[distributionName](
@@ -14,32 +14,32 @@ function distributions(curve) {
   return result;
 }
 
-function generateResults(curves, epics) {
-  // Lots of numbers: A batch for each curve, and then a batch for each epic.
+function generateResults(features, epics) {
+  // Lots of numbers: A batch for each feature, and then a batch for each epic.
 
-  const curveResults = [];
-  for (const curve of curves) {
-    const curveResult = {};
-    const curveDistributions = distributions(curve);
-    for (const distributionName in curveDistributions) {
-      const distribution = curveDistributions[distributionName];
-      curveResult[distributionName] = Array.from({ length: ITERATIONS }, () =>
+  const featureResults = [];
+  for (const feature of features) {
+    const featureResult = {};
+    const featureDistributions = distributions(feature);
+    for (const distributionName in featureDistributions) {
+      const distribution = featureDistributions[distributionName];
+      featureResult[distributionName] = Array.from({ length: ITERATIONS }, () =>
         distribution.sample()
       ).sort(function(a, b) {
         return a - b;
       });
     }
-    curveResults.push(curveResult);
+    featureResults.push(featureResult);
   }
 
   const epicResults = [];
   for (const epic of epics) {
     const epicDistributions = {};
-    for (const [curveIndex, count] of epic['curves'].entries()) {
-      const curve = curves[curveIndex];
-      const curveDistributions = distributions(curve);
-      for (const distributionName in curveDistributions) {
-        const distribution = curveDistributions[distributionName];
+    for (const [featureIndex, count] of epic['features'].entries()) {
+      const feature = features[featureIndex];
+      const featureDistributions = distributions(feature);
+      for (const distributionName in featureDistributions) {
+        const distribution = featureDistributions[distributionName];
         if (!(distributionName in epicDistributions)) {
           epicDistributions[distributionName] = [];
         }
@@ -62,7 +62,7 @@ function generateResults(curves, epics) {
     epicResults.push(epicResult);
   }
 
-  return { curves: curveResults, epics: epicResults };
+  return { features: featureResults, epics: epicResults };
 }
 
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round#A_better_solution

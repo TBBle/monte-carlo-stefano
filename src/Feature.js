@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { percentile, round } from './data';
-import './Curve.css';
+import './Feature.css';
 
 function renderPercentiles(results) {
   return (
@@ -13,9 +13,9 @@ function renderPercentiles(results) {
   );
 }
 
-class Curve extends Component {
+class Feature extends Component {
   renderPERT() {
-    const parameters = this.props.curve.parameters.PERT;
+    const parameters = this.props.feature.parameters.PERT;
     return (
       <>
         <td>{parameters.minimum}</td>
@@ -31,7 +31,7 @@ class Curve extends Component {
   }
 
   renderGaussian() {
-    const parameters = this.props.curve.parameters.Gaussian;
+    const parameters = this.props.feature.parameters.Gaussian;
     return (
       <>
         <td>{parameters.mean}</td>
@@ -46,8 +46,10 @@ class Curve extends Component {
 
   render() {
     return (
-      <tr className={this.props.selected ? 'Curve Curve-Selected' : 'Curve'}>
-        <td>{this.props.curve.size}</td>
+      <tr
+        className={this.props.selected ? 'Feature Feature-Selected' : 'Feature'}
+      >
+        <td>{this.props.feature.size}</td>
         {this.renderPERT()}
         {this.renderGaussian()}
         {this.renderPERTPercentiles()}
@@ -57,4 +59,4 @@ class Curve extends Component {
   }
 }
 
-export default Curve;
+export default Feature;

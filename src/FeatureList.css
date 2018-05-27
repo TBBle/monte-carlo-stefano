@@ -1,12 +1,12 @@
-.CurveList {
+.FeatureList {
   border: 1px black solid;
 }
 
-.CurveList tr th {
+.FeatureList tr th {
   border: 1px black solid;
 }
 
-.CurveList tr td {
+.FeatureList tr td {
   border: 1px black dotted;
 }
 
