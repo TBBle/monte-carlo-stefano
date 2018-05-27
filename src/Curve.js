@@ -5,19 +5,22 @@ class Curve extends Component {
   renderPERT() {
     const parameters = this.props.curve.parameters.PERT;
     return (
-      <td>
-        minimum = {parameters.minimum}, maximum = {parameters.maximum}, mode ={' '}
-        {parameters.mode}
-      </td>
+      <>
+        <td>{parameters.minimum}</td>
+        <td>{parameters.maximum}</td>
+        <td>{parameters.mode}</td>
+        <td>{parameters.height}</td>
+      </>
     );
   }
 
   renderGaussian() {
     const parameters = this.props.curve.parameters.Gaussian;
     return (
-      <td>
-        mean = {parameters.mean}, sd = {parameters.sd}
-      </td>
+      <>
+        <td>{parameters.mean}</td>
+        <td>{parameters.sd}</td>
+      </>
     );
   }
 

@@ -21,10 +21,21 @@ class CurveList extends Component {
         <table>
           <thead>
             <tr>
-              <th>Size</th>
-              <th>PERT</th>
-              <th>Gaussian</th>
-              <th>Result</th>
+              <th rowSpan="3">Size</th>
+              <th colSpan="6">Parameters</th>
+              <th rowSpan="3">Result</th>
+            </tr>
+            <tr>
+              <th colSpan="4">PERT</th>
+              <th colSpan="2">Gaussian</th>
+            </tr>
+            <tr>
+              <th>Min</th>
+              <th>Max</th>
+              <th>Mode</th>
+              <th>Height</th>
+              <th>Mean</th>
+              <th>Std. dev.</th>
             </tr>
           </thead>
           <tbody>{curves}</tbody>

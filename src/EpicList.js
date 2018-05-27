@@ -25,10 +25,11 @@ class EpicList extends Component {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
-              {curveHeaders}
-              <th>Result</th>
+              <th rowSpan="2">ID</th>
+              <th colSpan={curveHeaders.length}>Curves</th>
+              <th rowSpan="2">Result</th>
             </tr>
+            <tr>{curveHeaders}</tr>
           </thead>
           <tbody>{epics}</tbody>
         </table>
