@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
-import { round } from './data';
+import { round, percentile } from './data';
 
 import './Graph.css';
 
@@ -34,6 +34,18 @@ class Graph extends Component {
       count: count,
     }));
 
+    // Insert percentile markers
+    const markLineData = [];
+    const percentiles = [3, 50, 80, 97];
+    const percentileLabels = ['3rd', '50th', '80th', '97th'];
+    percentiles.forEach((percentileValue, index) => {
+      const value = round(percentile(results, percentileValue), 1);
+      markLineData.push([
+        { xAxis: value, yAxis: 'min', name: percentileLabels[index] },
+        { xAxis: value, yAxis: 'max' },
+      ]);
+    });
+
     return {
       legend: {},
       tooltip: {},
@@ -43,7 +55,10 @@ class Graph extends Component {
       },
       xAxis: { type: 'value' },
       yAxis: {},
-      series: { type: 'bar' },
+      series: {
+        type: 'bar',
+        markLine: { lineStyle: { color: 'black' }, data: markLineData },
+      },
     };
   }
 
