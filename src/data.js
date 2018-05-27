@@ -25,7 +25,9 @@ function generateResults(curves, epics) {
       const distribution = curveDistributions[distributionName];
       curveResult[distributionName] = Array.from({ length: ITERATIONS }, () =>
         distribution.sample()
-      );
+      ).sort(function(a, b) {
+        return a - b;
+      });
     }
     curveResults.push(curveResult);
   }
@@ -53,6 +55,8 @@ function generateResults(curves, epics) {
         return distributions.reduce((accumulator, distribution) => {
           return accumulator + distribution.sample();
         }, 0);
+      }).sort(function(a, b) {
+        return a - b;
       });
     }
     epicResults.push(epicResult);
@@ -77,4 +81,16 @@ function round(number, precision) {
   return shift(Math.round(shift(number, precision, false)), precision, true);
 }
 
-export { generateResults, round };
+// Based on https://en.wikipedia.org/wiki/Percentile#The_nearest-rank_method
+function percentile(array, percentile) {
+  if (percentile <= 0) {
+    return array[0];
+  }
+  if (percentile >= 100) {
+    return array[array.length - 1];
+  }
+  const rank = Math.ceil(percentile / 100 * array.length);
+  return array[rank];
+}
+
+export { generateResults, round, percentile };

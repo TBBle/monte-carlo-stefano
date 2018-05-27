@@ -15,6 +15,7 @@ class EpicList extends Component {
           key={epic.id}
           epic={epic}
           curves={this.props.curves}
+          results={this.props.results[index]}
           selected={index === this.props.selected}
         />
       );
@@ -25,11 +26,26 @@ class EpicList extends Component {
         <table>
           <thead>
             <tr>
-              <th rowSpan="2">ID</th>
-              <th colSpan={curveHeaders.length}>Curves</th>
-              <th rowSpan="2">Result</th>
+              <th rowSpan="3">ID</th>
+              <th colSpan={curveHeaders.length}>Parameters</th>
+              <th colSpan="8">Percentiles</th>
             </tr>
-            <tr>{curveHeaders}</tr>
+            <tr>
+              <th colSpan={curveHeaders.length}>Curves</th>
+              <th colSpan="4">PERT</th>
+              <th colSpan="4">Gaussian</th>
+            </tr>
+            <tr>
+              {curveHeaders}
+              <th>3rd</th>
+              <th>50th</th>
+              <th>80th</th>
+              <th>97th</th>
+              <th>3rd</th>
+              <th>50th</th>
+              <th>80th</th>
+              <th>97th</th>
+            </tr>
           </thead>
           <tbody>{epics}</tbody>
         </table>

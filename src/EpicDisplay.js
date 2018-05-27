@@ -26,7 +26,12 @@ class EpicDisplay extends Component {
     return (
       <div className="EpicDisplay">
         {epicGraphs}
-        <EpicList curves={curves} epics={epics} selected={selected} />
+        <EpicList
+          curves={curves}
+          epics={epics}
+          results={results}
+          selected={selected}
+        />
       </div>
     );
   }

@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
+import { percentile, round } from './data';
 import './Epic.css';
 
+function renderPercentiles(results) {
+  return (
+    <>
+      <td>{round(percentile(results, 3), 1)}</td>
+      <td>{round(percentile(results, 50), 1)}</td>
+      <td>{round(percentile(results, 80), 1)}</td>
+      <td>{round(percentile(results, 97), 1)}</td>
+    </>
+  );
+}
+
 class Epic extends Component {
-  renderResult = () => {
-    return <td>Result here</td>;
-  };
+  renderPERTPercentiles() {
+    return renderPercentiles(this.props.results.PERT);
+  }
+
+  renderGaussianPercentiles() {
+    return renderPercentiles(this.props.results.Gaussian);
+  }
 
   render() {
     const curveCounts = [];
@@ -16,7 +32,8 @@ class Epic extends Component {
       <tr className={this.props.selected ? 'Epic Epic-Selected' : 'Epic'}>
         <td>{epic.id}</td>
         {curveCounts}
-        {this.renderResult()}
+        {this.renderPERTPercentiles()}
+        {this.renderGaussianPercentiles()}
       </tr>
     );
   }

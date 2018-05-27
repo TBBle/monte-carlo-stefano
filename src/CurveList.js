@@ -10,6 +10,7 @@ class CurveList extends Component {
         <Curve
           key={index}
           curve={curve}
+          results={this.props.results[index]}
           selected={index === this.props.selected ? true : false}
         />
       );
@@ -23,11 +24,13 @@ class CurveList extends Component {
             <tr>
               <th rowSpan="3">Size</th>
               <th colSpan="6">Parameters</th>
-              <th rowSpan="3">Result</th>
+              <th colSpan="8">Percentiles</th>
             </tr>
             <tr>
               <th colSpan="4">PERT</th>
               <th colSpan="2">Gaussian</th>
+              <th colSpan="4">PERT</th>
+              <th colSpan="4">Gaussian</th>
             </tr>
             <tr>
               <th>Min</th>
@@ -36,6 +39,14 @@ class CurveList extends Component {
               <th>Height</th>
               <th>Mean</th>
               <th>Std. dev.</th>
+              <th>3rd</th>
+              <th>50th</th>
+              <th>80th</th>
+              <th>97th</th>
+              <th>3rd</th>
+              <th>50th</th>
+              <th>80th</th>
+              <th>97th</th>
             </tr>
           </thead>
           <tbody>{curves}</tbody>

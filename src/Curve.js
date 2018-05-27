@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
+import { percentile, round } from './data';
 import './Curve.css';
+
+function renderPercentiles(results) {
+  return (
+    <>
+      <td>{round(percentile(results, 3), 1)}</td>
+      <td>{round(percentile(results, 50), 1)}</td>
+      <td>{round(percentile(results, 80), 1)}</td>
+      <td>{round(percentile(results, 97), 1)}</td>
+    </>
+  );
+}
 
 class Curve extends Component {
   renderPERT() {
@@ -14,6 +26,10 @@ class Curve extends Component {
     );
   }
 
+  renderPERTPercentiles() {
+    return renderPercentiles(this.props.results.PERT);
+  }
+
   renderGaussian() {
     const parameters = this.props.curve.parameters.Gaussian;
     return (
@@ -24,13 +40,18 @@ class Curve extends Component {
     );
   }
 
+  renderGaussianPercentiles() {
+    return renderPercentiles(this.props.results.Gaussian);
+  }
+
   render() {
     return (
       <tr className={this.props.selected ? 'Curve Curve-Selected' : 'Curve'}>
         <td>{this.props.curve.size}</td>
         {this.renderPERT()}
         {this.renderGaussian()}
-        <td>Result here</td>
+        {this.renderPERTPercentiles()}
+        {this.renderGaussianPercentiles()}
       </tr>
     );
   }

@@ -26,7 +26,7 @@ class CurveDisplay extends Component {
     return (
       <div className="CurveDisplay">
         {curveGraphs}
-        <CurveList curves={curves} selected={selected} />
+        <CurveList curves={curves} results={results} selected={selected} />
       </div>
     );
   }
