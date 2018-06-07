@@ -14,8 +14,30 @@ function renderPercentiles(results) {
 }
 
 class Epic extends Component {
+  renderPERT() {
+    const parameters = this.props.epic.parameters.PERT;
+    return (
+      <>
+        <td>{parameters.minimum}</td>
+        <td>{parameters.maximum}</td>
+        <td>{parameters.mode}</td>
+        <td>{parameters.height}</td>
+      </>
+    );
+  }
+
   renderPERTPercentiles() {
     return renderPercentiles(this.props.results.PERT);
+  }
+
+  renderGaussian() {
+    const parameters = this.props.epic.parameters.Gaussian;
+    return (
+      <>
+        <td>{parameters.mean}</td>
+        <td>{parameters.sd}</td>
+      </>
+    );
   }
 
   renderGaussianPercentiles() {
@@ -23,15 +45,11 @@ class Epic extends Component {
   }
 
   render() {
-    const featureCounts = [];
-    const epic = this.props.epic;
-    epic.features.forEach((count, index) => {
-      featureCounts.push(<td key={index}>{count}</td>);
-    });
     return (
       <tr className={this.props.selected ? 'Epic Epic-Selected' : 'Epic'}>
-        <td>{epic.id}</td>
-        {featureCounts}
+        <td>{this.props.epic.size}</td>
+        {this.renderPERT()}
+        {this.renderGaussian()}
         {this.renderPERTPercentiles()}
         {this.renderGaussianPercentiles()}
       </tr>

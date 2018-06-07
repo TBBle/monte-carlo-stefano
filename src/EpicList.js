@@ -4,39 +4,41 @@ import Epic from './Epic';
 
 class EpicList extends Component {
   render() {
-    const featureHeaders = [];
-    this.props.features.forEach((feature, index) => {
-      featureHeaders.push(<th key={index}>{feature.size}</th>);
-    });
     const epics = [];
     this.props.epics.forEach((epic, index) => {
       epics.push(
         <Epic
-          key={epic.id}
+          key={index}
           epic={epic}
-          features={this.props.features}
           results={this.props.results[index]}
-          selected={index === this.props.selected}
+          selected={index === this.props.selected ? true : false}
         />
       );
     });
+
     return (
       <div className="EpicList">
         <h2>Epics</h2>
         <table>
           <thead>
             <tr>
-              <th rowSpan="3">ID</th>
-              <th colSpan={featureHeaders.length}>Parameters</th>
+              <th rowSpan="3">Size</th>
+              <th colSpan="6">Parameters</th>
               <th colSpan="8">Percentiles</th>
             </tr>
             <tr>
-              <th colSpan={featureHeaders.length}>Features</th>
+              <th colSpan="4">PERT</th>
+              <th colSpan="2">Gaussian</th>
               <th colSpan="4">PERT</th>
               <th colSpan="4">Gaussian</th>
             </tr>
             <tr>
-              {featureHeaders}
+              <th>Min</th>
+              <th>Max</th>
+              <th>Mode</th>
+              <th>Height</th>
+              <th>Mean</th>
+              <th>Std. dev.</th>
               <th>3rd</th>
               <th>50th</th>
               <th>80th</th>

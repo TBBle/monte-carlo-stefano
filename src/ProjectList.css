@@ -1,15 +1,10 @@
-.FeatureList {
+.ProjectList {
   border: 1px black solid;
 }
 
-.FeatureList tr th {
+.ProjectList tr th {
   border: 1px black solid;
 }
-
-.FeatureList tr td {
+.ProjectList tr td {
   border: 1px black dotted;
-}
-
-.error {
-  color: red;
 }

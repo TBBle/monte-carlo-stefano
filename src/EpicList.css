@@ -5,6 +5,11 @@
 .EpicList tr th {
   border: 1px black solid;
 }
+
 .EpicList tr td {
   border: 1px black dotted;
+}
+
+.error {
+  color: red;
 }

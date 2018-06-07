@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
-import FeatureList from './FeatureList';
+import ProjectList from './ProjectList';
 
-class FeatureDisplay extends Component {
+class ProjectDisplay extends Component {
   render() {
     const selected = 0;
-    const features = this.props.features;
+    const epics = this.props.epics;
+    const projects = this.props.projects;
     const results = this.props.results;
-    const selectedFeatures = features[selected];
+    const selectedProjects = projects[selected];
     const selectedResults = results[selected];
 
-    const featureGraphs = [];
+    const projectGraphs = [];
     for (const distributionName in selectedResults) {
       const label =
-        'Feature: ' + selectedFeatures.size + ' (' + distributionName + ')';
-      featureGraphs.push(
+        'Project ' + selectedProjects.id + ' (' + distributionName + ')';
+      projectGraphs.push(
         <Graph
           key={distributionName}
           label={label}
@@ -24,10 +25,11 @@ class FeatureDisplay extends Component {
     }
 
     return (
-      <div className="FeatureDisplay">
-        {featureGraphs}
-        <FeatureList
-          features={features}
+      <div className="ProjectDisplay">
+        {projectGraphs}
+        <ProjectList
+          epics={epics}
+          projects={projects}
           results={results}
           selected={selected}
         />
@@ -36,4 +38,4 @@ class FeatureDisplay extends Component {
   }
 }
 
-export default FeatureDisplay;
+export default ProjectDisplay;

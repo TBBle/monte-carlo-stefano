@@ -5,7 +5,6 @@ import EpicList from './EpicList';
 class EpicDisplay extends Component {
   render() {
     const selected = 0;
-    const features = this.props.features;
     const epics = this.props.epics;
     const results = this.props.results;
     const selectedEpics = epics[selected];
@@ -13,7 +12,8 @@ class EpicDisplay extends Component {
 
     const epicGraphs = [];
     for (const distributionName in selectedResults) {
-      const label = 'Epic ' + selectedEpics.id + ' (' + distributionName + ')';
+      const label =
+        'Epic: ' + selectedEpics.size + ' (' + distributionName + ')';
       epicGraphs.push(
         <Graph
           key={distributionName}
@@ -26,12 +26,7 @@ class EpicDisplay extends Component {
     return (
       <div className="EpicDisplay">
         {epicGraphs}
-        <EpicList
-          features={features}
-          epics={epics}
-          results={results}
-          selected={selected}
-        />
+        <EpicList epics={epics} results={results} selected={selected} />
       </div>
     );
   }
