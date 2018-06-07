@@ -17,6 +17,7 @@ class ProjectList extends Component {
           epics={this.props.epics}
           results={this.props.results[index]}
           selected={index === this.props.selected}
+          onDelete={() => this.props.onProjectDelete(project.id)}
         />
       );
     });
@@ -29,6 +30,7 @@ class ProjectList extends Component {
               <th rowSpan="3">ID</th>
               <th colSpan={epicHeaders.length}>Parameters</th>
               <th colSpan="8">Percentiles</th>
+              <th rowSpan="3">Actions</th>
             </tr>
             <tr>
               <th colSpan={epicHeaders.length}>Epics</th>

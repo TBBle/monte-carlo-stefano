@@ -36,6 +36,9 @@ class Project extends Component {
         {epicCounts}
         {this.renderPERTPercentiles()}
         {this.renderGaussianPercentiles()}
+        <td>
+          <button onClick={this.props.onDelete}>Delete</button>
+        </td>
       </tr>
     );
   }

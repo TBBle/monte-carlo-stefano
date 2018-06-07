@@ -18,6 +18,17 @@ class ProjectDisplay extends Component {
         { id: 6, epics: [1, 1, 1, 1, 1] },
       ],
     };
+
+    this.handleProjectDelete = this.handleProjectDelete.bind(this);
+  }
+
+  handleProjectDelete(projectID) {
+    this.setState((prevState, props) => {
+      const newProjects = prevState.projects.filter(
+        project => project.id !== projectID
+      );
+      return { projects: newProjects };
+    });
   }
 
   render() {
@@ -51,6 +62,7 @@ class ProjectDisplay extends Component {
           projects={projects}
           results={results}
           selected={selected}
+          onProjectDelete={this.handleProjectDelete}
         />
       </div>
     );
