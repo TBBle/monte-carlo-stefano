@@ -4,10 +4,17 @@ import EpicList from './EpicList';
 import { generateEpicResults } from './data';
 
 class EpicDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 0,
+      iterations: 2000,
+    };
+  }
   render() {
     // State
-    const selected = 0;
-    const iterations = 2000;
+    const selected = this.state.selected;
+    const iterations = this.state.iterations;
 
     const epics = this.props.epics;
     const results = generateEpicResults(epics, iterations);
