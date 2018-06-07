@@ -1,7 +1,5 @@
 import DistributionRegistry from './DistributionRegistry';
 
-const ITERATIONS = 2000;
-
 function distributions(epic) {
   const result = {};
   const parametersObject = epic['parameters'];
@@ -14,16 +12,14 @@ function distributions(epic) {
   return result;
 }
 
-function generateResults(epics, projects) {
-  // Lots of numbers: A batch for each epic, and then a batch for each project.
-
+function generateEpicResults(epics, iterations) {
   const epicResults = [];
   for (const epic of epics) {
     const epicResult = {};
     const epicDistributions = distributions(epic);
     for (const distributionName in epicDistributions) {
       const distribution = epicDistributions[distributionName];
-      epicResult[distributionName] = Array.from({ length: ITERATIONS }, () =>
+      epicResult[distributionName] = Array.from({ length: iterations }, () =>
         distribution.sample()
       ).sort(function(a, b) {
         return a - b;
@@ -32,6 +28,10 @@ function generateResults(epics, projects) {
     epicResults.push(epicResult);
   }
 
+  return epicResults;
+}
+
+function generateProjectResults(epics, projects, iterations) {
   const projectResults = [];
   for (const project of projects) {
     const projectDistributions = {};
@@ -52,7 +52,7 @@ function generateResults(epics, projects) {
     for (const distributionName in projectDistributions) {
       const distributions = projectDistributions[distributionName];
       projectResult[distributionName] = Array.from(
-        { length: ITERATIONS },
+        { length: iterations },
         () => {
           return distributions.reduce((accumulator, distribution) => {
             return accumulator + distribution.sample();
@@ -65,7 +65,7 @@ function generateResults(epics, projects) {
     projectResults.push(projectResult);
   }
 
-  return { epics: epicResults, projects: projectResults };
+  return projectResults;
 }
 
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round#A_better_solution
@@ -96,4 +96,4 @@ function percentile(array, percentile) {
   return array[rank];
 }
 
-export { generateResults, round, percentile };
+export { generateEpicResults, generateProjectResults, round, percentile };

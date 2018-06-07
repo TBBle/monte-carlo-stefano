@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import ProjectDisplay from './ProjectDisplay';
 import EpicDisplay from './EpicDisplay';
-import { generateResults } from './data';
 
 class App extends Component {
   render() {
+    // Future state
     const EPICS = [
       {
         size: 'XS',
@@ -44,31 +44,16 @@ class App extends Component {
       },
     ];
 
-    const PROJECTS = [
-      { id: 1, epics: [1, 0, 0, 0, 0] },
-      { id: 2, epics: [0, 1, 0, 0, 0] },
-      { id: 3, epics: [0, 0, 1, 0, 0] },
-      { id: 4, epics: [0, 0, 0, 1, 0] },
-      { id: 5, epics: [0, 0, 0, 0, 1] },
-      { id: 6, epics: [1, 1, 1, 1, 1] },
-    ];
-
-    const RESULTS = generateResults(EPICS, PROJECTS);
-
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Stefano's Monte Carlo thing</h1>
         </header>
         <div className="App-left">
-          <ProjectDisplay
-            epics={EPICS}
-            projects={PROJECTS}
-            results={RESULTS.projects}
-          />
+          <ProjectDisplay epics={EPICS} />
         </div>
         <div className="App-right">
-          <EpicDisplay epics={EPICS} results={RESULTS.epics} />
+          <EpicDisplay epics={EPICS} />
         </div>
       </div>
     );

@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
 import EpicList from './EpicList';
+import { generateEpicResults } from './data';
 
 class EpicDisplay extends Component {
   render() {
+    // State
     const selected = 0;
+    const iterations = 2000;
+
     const epics = this.props.epics;
-    const results = this.props.results;
+    const results = generateEpicResults(epics, iterations);
     const selectedEpics = epics[selected];
     const selectedResults = results[selected];
 
