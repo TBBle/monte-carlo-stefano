@@ -37,6 +37,7 @@ class Project extends Component {
         {this.renderPERTPercentiles()}
         {this.renderGaussianPercentiles()}
         <td>
+          <button onClick={this.props.onEdit}>Edit...</button>
           <button onClick={this.props.onDelete}>Delete</button>
         </td>
       </tr>

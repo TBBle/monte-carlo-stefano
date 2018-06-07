@@ -17,6 +17,7 @@ class ProjectList extends Component {
           epics={this.props.epics}
           results={this.props.results[index]}
           selected={index === this.props.selected}
+          onEdit={() => this.props.onProjectEdit(project.id)}
           onDelete={() => this.props.onProjectDelete(project.id)}
         />
       );
