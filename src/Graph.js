@@ -4,6 +4,25 @@ import { round, percentile } from './data';
 
 import './Graph.css';
 
+function tooltipValueFormatter(params) {
+  return params.seriesName + ': ' + params.value[1] + '%';
+}
+
+function tooltipFormatter(paramsList) {
+  // Ordering in the tool tip varies by which graph we're over
+  const pertFirst = paramsList[0].seriesName === 'PERT';
+  const pertParams = paramsList[pertFirst ? 0 : 1];
+  const gaussianParams = paramsList[pertFirst ? 1 : 0];
+  return (
+    '' +
+    pertParams.value[0] +
+    ' days:<br/>' +
+    tooltipValueFormatter(pertParams) +
+    '<br/>' +
+    tooltipValueFormatter(gaussianParams)
+  );
+}
+
 class Graph extends Component {
   render() {
     return (
@@ -18,48 +37,88 @@ class Graph extends Component {
     const pertResults = this.props.results['PERT'];
     const pertRoundedValues = pertResults.map(x => round(x, 1));
     const pertPercentages = this.countHitsAsPercentage(pertRoundedValues);
-    const pertMarkLines = this.generateMarkLines(pertResults);
+    const pertGrid = { top: '10%', bottom: '40%', height: '30%' };
+    const pertMarkLines = this.generateMarkLines(
+      pertResults,
+      pertGrid['bottom'],
+      pertGrid['top']
+    );
 
     const gaussianResults = this.props.results['Gaussian'];
     const gaussianRoundedValues = gaussianResults.map(x => round(x, 1));
     const gaussianPercentages = this.countHitsAsPercentage(
       gaussianRoundedValues
     );
-    const gaussianMarkLines = this.generateMarkLines(gaussianResults);
+    const gaussianGrid = { top: '60%', bottom: '90%', height: '30%' };
+    const gaussianMarkLines = this.generateMarkLines(
+      gaussianResults,
+      gaussianGrid['bottom'],
+      gaussianGrid['top']
+    );
 
     const minLength = Math.min(...pertRoundedValues, ...gaussianRoundedValues);
     const maxLength = Math.max(...pertRoundedValues, ...gaussianRoundedValues);
 
     return {
-      legend: {},
-      tooltip: {},
+      legend: { selectedMode: false },
+      tooltip: {
+        trigger: 'axis',
+        formatter: tooltipFormatter,
+      },
+      axisPointer: {
+        link: { xAxisIndex: 'all' },
+      },
       dataset: [
         {
           source: pertPercentages,
-          dimensions: ['length', 'PERT'],
+          dimensions: [null, 'PERT'],
         },
         {
           source: gaussianPercentages,
-          dimensions: ['length', 'Gaussian'],
+          dimensions: [null, 'Gaussian'],
         },
       ],
-      grid: [{ height: '30%' }, { bottom: '10%', height: '30%' }],
+      grid: [pertGrid, gaussianGrid],
       xAxis: [
-        { type: 'value', min: minLength, max: maxLength },
-        { type: 'value', gridIndex: 1, min: minLength, max: maxLength },
+        {
+          type: 'value',
+          min: minLength,
+          max: maxLength,
+          axisPointer: { show: true },
+          axisLabel: { formatter: '{value}d' },
+        },
+        {
+          type: 'value',
+          gridIndex: 1,
+          min: minLength,
+          max: maxLength,
+          axisPointer: { show: true },
+          axisLabel: { formatter: '{value}d' },
+        },
       ],
-      yAxis: [{}, { gridIndex: 1 }],
+      yAxis: [
+        { axisLabel: { formatter: '{value}%' } },
+        { gridIndex: 1, axisLabel: { formatter: '{value}%' } },
+      ],
       series: [
         {
           type: 'bar',
-          markLine: { lineStyle: { color: 'black' }, data: pertMarkLines },
+          markLine: {
+            lineStyle: { color: 'black' },
+            silent: true,
+            data: pertMarkLines,
+          },
         },
         {
           type: 'bar',
           datasetIndex: 1,
           xAxisIndex: 1,
           yAxisIndex: 1,
-          markLine: { lineStyle: { color: 'black' }, data: gaussianMarkLines },
+          markLine: {
+            lineStyle: { color: 'black' },
+            silent: true,
+            data: gaussianMarkLines,
+          },
         },
       ],
     };
@@ -75,7 +134,7 @@ class Graph extends Component {
     ]);
   }
 
-  generateMarkLines(values) {
+  generateMarkLines(values, minY, maxY) {
     const percentiles = [3, 50, 80, 97];
     const percentileLabels = ['3rd', '50th', '80th', '97th'];
 
@@ -83,8 +142,8 @@ class Graph extends Component {
     percentiles.forEach((percentileValue, index) => {
       const value = round(percentile(values, percentileValue), 1);
       result.push([
-        { xAxis: value, yAxis: 'min', name: percentileLabels[index] },
-        { xAxis: value, yAxis: 'max' },
+        { xAxis: value, y: minY, name: percentileLabels[index] },
+        { xAxis: value, y: maxY },
       ]);
     });
     return result;
