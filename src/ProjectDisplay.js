@@ -64,19 +64,6 @@ class ProjectDisplay extends Component {
     const selectedProjects = projects[selected];
     const selectedResults = results[selected];
 
-    const projectGraphs = [];
-    for (const distributionName in selectedResults) {
-      const label =
-        'Project ' + selectedProjects.id + ' (' + distributionName + ')';
-      projectGraphs.push(
-        <Graph
-          key={distributionName}
-          label={label}
-          results={selectedResults[distributionName]}
-        />
-      );
-    }
-
     const editing = this.state.editProjectID !== null;
     const editProject = editing
       ? this.state.projects.find(
@@ -86,7 +73,10 @@ class ProjectDisplay extends Component {
 
     return (
       <div className="ProjectDisplay">
-        {projectGraphs}
+        <Graph
+          label={'Project ' + selectedProjects.id}
+          results={selectedResults}
+        />
         <ProjectList
           epics={epics}
           projects={projects}
