@@ -39,7 +39,7 @@ class App extends Component {
         size: 'XL',
         parameters: {
           PERT: { minimum: 50, mode: 50, maximum: 100, height: 1 },
-          Gaussian: { mean: 52, sd: 5.2 },
+          Gaussian: { mean: 50, sd: 5 },
         },
       },
     ];
