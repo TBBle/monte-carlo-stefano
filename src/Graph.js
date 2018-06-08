@@ -6,16 +6,10 @@ import './Graph.css';
 
 class Graph extends Component {
   render() {
-    const results = this.props.results;
-    const resultList = [];
-    results.forEach((result, index) => {
-      resultList.push(<li key={index}>{result}</li>);
-    });
     return (
       <div className="Graph">
         <p>Rendering {this.props.label}</p>
         <ReactEcharts option={this.getOption()} />
-        <ul style={{ display: 'none' }}>{resultList}</ul>
       </div>
     );
   }
