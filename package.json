@@ -26,7 +26,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {},
-  "homepage": "http://www.tbble.org/monte-carlo-stefano/",
+  "homepage": "https://www.tbble.org/monte-carlo-stefano/",
   "browserslist": {
     "development": [
       "last 2 chrome versions",
