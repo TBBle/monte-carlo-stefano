@@ -1,11 +1,21 @@
-.epicList {
+.epicList > table {
   border: 1px black solid;
+  border-collapse: collapse;
+  margin: 8px;
 }
 
-.epicList tr th {
+.epicList > table > thead > tr > th {
   border: 1px black solid;
+  border-bottom: 2px black solid;
 }
 
-.epicList tr td {
-  border: 1px black dotted;
+.epicList > table > tbody > tr > td {
+  border-bottom: 1px black solid;
+  border-left: 0.5px #b0b0b0 solid;
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+.epicList > table > tbody > tr:nth-child(even) {
+  background-color: #f2f2f2;
 }

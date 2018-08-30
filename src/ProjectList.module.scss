@@ -1,10 +1,21 @@
-.ProjectList {
+.ProjectList > table {
   border: 1px black solid;
+  border-collapse: collapse;
+  margin: 8px;
 }
 
-.ProjectList tr th {
+.ProjectList > table > thead > tr > th {
   border: 1px black solid;
+  border-bottom: 2px black solid;
 }
-.ProjectList tr td {
-  border: 1px black dotted;
+
+.ProjectList > table > tbody > tr > td {
+  border-bottom: 1px black solid;
+  border-left: 0.5px #b0b0b0 solid;
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+.ProjectList > table > tbody > tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
