@@ -1,10 +1,10 @@
 {
   "runtime~main.js": "/monte-carlo-stefano/static/js/runtime~main.4829a1c2.js",
   "runtime~main.js.map": "/monte-carlo-stefano/static/js/runtime~main.4829a1c2.js.map",
-  "vendors.js": "/monte-carlo-stefano/static/js/vendors.926113b5.chunk.js",
-  "vendors.js.map": "/monte-carlo-stefano/static/js/vendors.926113b5.chunk.js.map",
-  "main.css": "/monte-carlo-stefano/static/css/main.46f4c095.chunk.css",
-  "main.js": "/monte-carlo-stefano/static/js/main.23ca9ae3.chunk.js",
-  "main.js.map": "/monte-carlo-stefano/static/js/main.23ca9ae3.chunk.js.map",
+  "vendors.js": "/monte-carlo-stefano/static/js/vendors.b043eba7.chunk.js",
+  "vendors.js.map": "/monte-carlo-stefano/static/js/vendors.b043eba7.chunk.js.map",
+  "main.css": "/monte-carlo-stefano/static/css/main.8c68674a.chunk.css",
+  "main.js": "/monte-carlo-stefano/static/js/main.2e019181.chunk.js",
+  "main.js.map": "/monte-carlo-stefano/static/js/main.2e019181.chunk.js.map",
   "index.html": "/monte-carlo-stefano/index.html"
 }
