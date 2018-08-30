@@ -7,17 +7,25 @@ import { generateProjectResults } from './data';
 class ProjectDisplay extends Component {
   constructor(props) {
     super(props);
+    const defaultIterations = 2000;
+    const defaultProjects = [
+      { id: 1, epics: [1, 0, 0, 0, 0] },
+      { id: 2, epics: [0, 1, 0, 0, 0] },
+      { id: 3, epics: [0, 0, 1, 0, 0] },
+      { id: 4, epics: [0, 0, 0, 1, 0] },
+      { id: 5, epics: [0, 0, 0, 0, 1] },
+      { id: 6, epics: [1, 1, 1, 1, 1] },
+    ];
+    const initialResults = generateProjectResults(
+      this.props.epics,
+      defaultProjects,
+      defaultIterations
+    );
     this.state = {
       selected: 0,
-      iterations: 2000,
-      projects: [
-        { id: 1, epics: [1, 0, 0, 0, 0] },
-        { id: 2, epics: [0, 1, 0, 0, 0] },
-        { id: 3, epics: [0, 0, 1, 0, 0] },
-        { id: 4, epics: [0, 0, 0, 1, 0] },
-        { id: 5, epics: [0, 0, 0, 0, 1] },
-        { id: 6, epics: [1, 1, 1, 1, 1] },
-      ],
+      iterations: defaultIterations,
+      projects: defaultProjects,
+      results: initialResults,
       editProjectID: null,
     };
 
@@ -37,30 +45,48 @@ class ProjectDisplay extends Component {
 
   handleProjectEditUpdate(updatedProject) {
     this.setState((prevState, props) => {
+      // TODO: It would be better to recalculate the results only for
+      // the changed project.
       const newProjects = prevState.projects.map(
         project =>
           project.id === prevState.editProjectID ? updatedProject : project
       );
-      return { projects: newProjects, editProjectID: null };
+      const newResults = generateProjectResults(
+        this.props.epics,
+        newProjects,
+        prevState.iterations
+      );
+      return {
+        projects: newProjects,
+        editProjectID: null,
+        results: newResults,
+      };
     });
   }
 
   handleProjectDelete(projectID) {
     this.setState((prevState, props) => {
+      // TODO: It would be better to remove the results for the
+      // deleted project, rather than recalculate them all
       const newProjects = prevState.projects.filter(
         project => project.id !== projectID
       );
-      return { projects: newProjects };
+      const newResults = generateProjectResults(
+        this.props.epics,
+        newProjects,
+        prevState.iterations
+      );
+      return { projects: newProjects, results: newResults };
     });
   }
 
   render() {
     const selected = this.state.selected;
-    const iterations = this.state.iterations;
     const projects = this.state.projects;
+    const results = this.state.results;
+
     const epics = this.props.epics;
 
-    const results = generateProjectResults(epics, projects, iterations);
     const selectedProjects = projects[selected];
     const selectedResults = results[selected];
 

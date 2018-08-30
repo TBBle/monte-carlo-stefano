@@ -6,18 +6,25 @@ import { generateEpicResults } from './data';
 class EpicDisplay extends Component {
   constructor(props) {
     super(props);
+    const defaultIterations = 2000;
+    const initialResults = generateEpicResults(
+      this.props.epics,
+      defaultIterations
+    );
+
     this.state = {
       selected: 0,
-      iterations: 2000,
+      iterations: defaultIterations,
+      results: initialResults,
     };
   }
   render() {
     // State
     const selected = this.state.selected;
-    const iterations = this.state.iterations;
+    const results = this.state.results;
 
     const epics = this.props.epics;
-    const results = generateEpicResults(epics, iterations);
+
     const selectedEpics = epics[selected];
     const selectedResults = results[selected];
 
