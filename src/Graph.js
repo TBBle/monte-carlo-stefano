@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import { round, percentile } from './data';
 
-import './Graph.css';
+import styles from './Graph.module.scss';
 
 function tooltipValueFormatter(params) {
   return params.seriesName + ': ' + params.value[1] + '%';
@@ -26,7 +26,7 @@ function tooltipFormatter(paramsList) {
 class Graph extends Component {
   render() {
     return (
-      <div className="Graph">
+      <div className={styles.graph}>
         <p>Rendering {this.props.label}</p>
         <ReactEcharts style={{ height: '600px' }} option={this.getOption()} />
       </div>
@@ -130,7 +130,7 @@ class Graph extends Component {
     const count = values.length;
     return [...new Set(values)].map(x => [
       x,
-      values.filter(y => y === x).length * 100 / count,
+      (values.filter(y => y === x).length * 100) / count,
     ]);
   }
 

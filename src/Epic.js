@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { percentile, round } from './data';
-import './Epic.css';
+import styles from './Epic.module.scss';
 
 function renderPercentiles(results) {
   return (
@@ -46,7 +46,7 @@ class Epic extends Component {
 
   render() {
     return (
-      <tr className={this.props.selected ? 'Epic Epic-Selected' : 'Epic'}>
+      <tr className={this.props.selected ? styles.selected : undefined}>
         <td>{this.props.epic.size}</td>
         {this.renderPERT()}
         {this.renderGaussian()}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.module.scss';
 import ProjectDisplay from './ProjectDisplay';
 import EpicDisplay from './EpicDisplay';
 
@@ -45,14 +45,14 @@ class App extends Component {
     ];
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Stefano's Monte Carlo thing</h1>
+      <div className={styles.App}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>Stefano's Monte Carlo thing</h1>
         </header>
-        <div className="App-left">
+        <div className={styles.left}>
           <ProjectDisplay epics={EPICS} />
         </div>
-        <div className="App-right">
+        <div className={styles.right}>
           <EpicDisplay epics={EPICS} />
         </div>
       </div>

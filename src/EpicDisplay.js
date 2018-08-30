@@ -22,7 +22,7 @@ class EpicDisplay extends Component {
     const selectedResults = results[selected];
 
     return (
-      <div className="EpicDisplay">
+      <div>
         <Graph
           label={'Epic: ' + selectedEpics.size}
           results={selectedResults}

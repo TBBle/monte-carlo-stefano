@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { percentile, round } from './data';
-import './Project.css';
+import styles from './Project.module.scss';
 
 function renderPercentiles(results) {
   return (
@@ -29,9 +29,7 @@ class Project extends Component {
       epicCounts.push(<td key={index}>{count}</td>);
     });
     return (
-      <tr
-        className={this.props.selected ? 'Project Project-Selected' : 'Project'}
-      >
+      <tr className={this.props.selected ? styles.selected : undefined}>
         <td>{project.id}</td>
         {epicCounts}
         {this.renderPERTPercentiles()}

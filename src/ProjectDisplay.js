@@ -72,7 +72,7 @@ class ProjectDisplay extends Component {
       : null;
 
     return (
-      <div className="ProjectDisplay">
+      <div>
         <Graph
           label={'Project ' + selectedProjects.id}
           results={selectedResults}

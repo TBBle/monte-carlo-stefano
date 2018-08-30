@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ProjectList.css';
+import styles from './ProjectList.module.scss';
 import Project from './Project';
 
 class ProjectList extends Component {
@@ -23,7 +23,7 @@ class ProjectList extends Component {
       );
     });
     return (
-      <div className="ProjectList">
+      <div className={styles.ProjectList}>
         <h2>Projects</h2>
         <table>
           <thead>

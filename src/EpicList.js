@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './EpicList.css';
+import styles from './EpicList.module.scss';
 import Epic from './Epic';
 
 class EpicList extends Component {
@@ -17,7 +17,7 @@ class EpicList extends Component {
     });
 
     return (
-      <div className="EpicList">
+      <div className={styles.epicList}>
         <h2>Epics</h2>
         <table>
           <thead>
