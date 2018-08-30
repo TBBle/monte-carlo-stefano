@@ -8,13 +8,14 @@
     "echarts-for-react": "^2.0.8",
     "eslint-plugin-prettier": "^2.6.0",
     "gh-pages": "^1.1.0",
+    "node-sass": "^4.9.3",
     "prettier": "^1.12.1",
     "probability-distributions": "^0.9.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.4.5",
-    "react-scripts": "^2.0.0-next.a671462c"
+    "react-scripts": "2.0.0-next.a671462c"
   },
   "scripts": {
     "predeploy": "yarn run build",
