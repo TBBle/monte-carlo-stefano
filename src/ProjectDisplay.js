@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
+import IterationsEdit from './IterationsEdit';
 import ProjectEditModal from './ProjectEditModal';
 import ProjectList from './ProjectList';
 import { generateProjectResults } from './data';
@@ -33,6 +34,7 @@ class ProjectDisplay extends Component {
     this.handleProjectEditCancel = this.handleProjectEditCancel.bind(this);
     this.handleProjectEditUpdate = this.handleProjectEditUpdate.bind(this);
     this.handleProjectDelete = this.handleProjectDelete.bind(this);
+    this.handleIterationsUpdate = this.handleIterationsUpdate.bind(this);
   }
 
   handleProjectEdit(projectID) {
@@ -80,10 +82,25 @@ class ProjectDisplay extends Component {
     });
   }
 
+  handleIterationsUpdate(newIterations) {
+    this.setState((prevState, props) => {
+      const newResults = generateProjectResults(
+        this.props.epics,
+        prevState.projects,
+        newIterations
+      );
+      return {
+        iterations: newIterations,
+        results: newResults,
+      };
+    });
+  }
+
   render() {
     const selected = this.state.selected;
     const projects = this.state.projects;
     const results = this.state.results;
+    const iterations = this.state.iterations;
 
     const epics = this.props.epics;
 
@@ -99,6 +116,10 @@ class ProjectDisplay extends Component {
 
     return (
       <div>
+        <IterationsEdit
+          iterations={iterations}
+          onIterationsUpdate={this.handleIterationsUpdate}
+        />
         <Graph
           label={'Project ' + selectedProjects.id}
           results={selectedResults}

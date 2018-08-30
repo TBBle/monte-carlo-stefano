@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
+import IterationsEdit from './IterationsEdit';
 import EpicList from './EpicList';
 import { generateEpicResults } from './data';
 
@@ -17,11 +18,24 @@ class EpicDisplay extends Component {
       iterations: defaultIterations,
       results: initialResults,
     };
+    this.handleIterationsUpdate = this.handleIterationsUpdate.bind(this);
   }
+
+  handleIterationsUpdate(newIterations) {
+    this.setState((prevState, props) => {
+      const newResults = generateEpicResults(this.props.epics, newIterations);
+      return {
+        iterations: newIterations,
+        results: newResults,
+      };
+    });
+  }
+
   render() {
     // State
     const selected = this.state.selected;
     const results = this.state.results;
+    const iterations = this.state.iterations;
 
     const epics = this.props.epics;
 
@@ -30,6 +44,10 @@ class EpicDisplay extends Component {
 
     return (
       <div>
+        <IterationsEdit
+          iterations={iterations}
+          onIterationsUpdate={this.handleIterationsUpdate}
+        />
         <Graph
           label={'Epic: ' + selectedEpics.size}
           results={selectedResults}
