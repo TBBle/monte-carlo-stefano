@@ -35,7 +35,7 @@ class Graph extends Component {
 
   getOption() {
     const pertResults = this.props.results['PERT'];
-    const pertRoundedValues = pertResults.map(x => round(x, 2));
+    const pertRoundedValues = pertResults.map(x => round(x, 0));
     const pertPercentages = this.countHitsAsPercentage(pertRoundedValues);
     const pertGrid = { top: '10%', bottom: '40%', height: '30%' };
     const pertMarkLines = this.generateMarkLines(
@@ -45,7 +45,7 @@ class Graph extends Component {
     );
 
     const gaussianResults = this.props.results['Gaussian'];
-    const gaussianRoundedValues = gaussianResults.map(x => round(x, 2));
+    const gaussianRoundedValues = gaussianResults.map(x => round(x, 0));
     const gaussianPercentages = this.countHitsAsPercentage(
       gaussianRoundedValues
     );
@@ -140,7 +140,7 @@ class Graph extends Component {
 
     const result = [];
     percentiles.forEach((percentileValue, index) => {
-      const value = round(percentile(values, percentileValue), 2);
+      const value = round(percentile(values, percentileValue), 0);
       result.push([
         { xAxis: value, y: minY, name: percentileLabels[index] },
         { xAxis: value, y: maxY },
