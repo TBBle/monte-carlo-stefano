@@ -47,7 +47,7 @@ class App extends Component {
     return (
       <div className={styles.App}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Stefano's Monte Carlo thing</h1>
+          <h1 className={styles.title}>Stefano's Monte Carlo</h1>
         </header>
         <div className={styles.left}>
           <ProjectDisplay epics={EPICS} />
