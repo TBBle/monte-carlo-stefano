@@ -8,7 +8,7 @@
     "echarts-for-react": "^2.0.8",
     "eslint-plugin-prettier": "^2.6.0",
     "gh-pages": "^1.1.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "prettier": "^1.12.1",
     "probability-distributions": "^0.9.1",
     "prop-types": "^15.6.1",
